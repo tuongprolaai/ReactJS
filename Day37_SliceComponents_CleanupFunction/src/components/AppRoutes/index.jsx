@@ -13,12 +13,9 @@ import AdminLayout from "../../layouts/AdminLayout";
 import PostDetail from "../../pages/PostDetail";
 import NewsTrashed from "../../pages/NewsTrashed";
 
-// Components
-import ScrollToTop from "../../components/ScrollToTop";
 function AppRoutes() {
   return (
     <Router>
-      <ScrollToTop/>
       <Routes>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />}></Route>
