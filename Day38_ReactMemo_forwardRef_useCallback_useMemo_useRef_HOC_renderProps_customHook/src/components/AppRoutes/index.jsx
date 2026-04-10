@@ -13,6 +13,7 @@ import AdminLayout from "../../layouts/AdminLayout";
 import PostDetail from "../../pages/PostDetail";
 import NewsTrashed from "../../pages/NewsTrashed";
 import UploadAvatar from "../../pages/UploadAvatar";
+import Hooks from "../../pages/Hooks";
 
 function AppRoutes() {
     return (
@@ -41,6 +42,7 @@ function AppRoutes() {
                     {/* Sidebar Layout pages */}
                 </Route>
                 {/* No layout pages */}
+                <Route path="/hooks" element={<Hooks />}></Route>
             </Routes>
         </Router>
     );
