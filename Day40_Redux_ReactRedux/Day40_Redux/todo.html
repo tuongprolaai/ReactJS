@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Todo</h1>
+        <form action="" id="form">
+            <input type="text" id="task-name" placeholder="Enter task..." />
+            <button>Add</button>
+        </form>
+        <ul id="list"></ul>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/redux@4.2.1/dist/redux.min.js"></script> -->
+        <script>
+            const Redux = {
+                __DO_NOT_USE__ActionTypes: {
+                    type: "@@F8-redux/INIT.a.b.c",
+                },
+                createStore(reducer, initState) {
+                    let state = reducer(
+                        initState,
+                        this.__DO_NOT_USE__ActionTypes,
+                    );
+                    const listeners = [];
+                    return {
+                        getState() {
+                            return state;
+                        },
+                        dispatch(action) {
+                            state = reducer(state, action);
+                            listeners.forEach((listener) => listener());
+                        },
+                        subscribe(listener) {
+                            if (typeof listener === "function") {
+                                listeners.push(listener);
+                            }
+                            return () => {
+                                const index = listeners.indexOf(listener);
+                                listeners.splice(index, 1);
+                            };
+                        },
+                    };
+                },
+            };
+
+            const initState = [
+                {
+                    name: "Rua bat",
+                    completed: false,
+                },
+            ];
+            const reducer = (state, action) => {
+                switch (action.type) {
+                    case "add":
+                        return [...state, action.payload];
+                    default:
+                        return state;
+                }
+            };
+            const store = Redux.createStore(reducer, initState);
+            console.log(store);
+
+            const list = document.querySelector("#list");
+            const form = document.querySelector("#form");
+            const taskName = document.querySelector("#task-name");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const newTask = {
+                    name: taskName.value,
+                    completed: false,
+                };
+                store.dispatch({
+                    type: "add",
+                    payload: newTask,
+                });
+                taskName.value = "";
+                taskName.focus();
+            });
+            const renderTasks = () => {
+                const tasks = store.getState();
+                list.innerHTML = tasks
+                    .map(
+                        (task) =>
+                            `<li>${task.name} (${task.completed ? "Done" : "Pending"})</li>`,
+                    )
+                    .join("");
+            };
+            renderTasks();
+            const tasks = store.getState();
+            store.subscribe(renderTasks);
+        </script>
+    </body>
+</html>

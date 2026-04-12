@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1 id="counter-value">0</h1>
+        <button id="increase">Increase</button>
+        <script src="https://cdn.jsdelivr.net/npm/redux@4.2.1/dist/redux.min.js"></script>
+        <script>
+            const initValue = 5;
+            const reducer = (state, action) => {
+                switch (action.type) {
+                    case "increase":
+                        return state + action.payload;
+                    default:
+                        return state;
+                }
+            };
+            const store = Redux.createStore(reducer, initValue);
+            const counterValue = document.querySelector("#counter-value");
+            const increase = document.querySelector("#increase");
+            increase.addEventListener("click", () => {
+                store.dispatch({
+                    type: "increase",
+                    payload: 10,
+                });
+            });
+            function render() {
+                counterValue.textContent = store.getState();
+            }
+            store.subscribe(render);
+            render();
+        </script>
+    </body>
+</html>
