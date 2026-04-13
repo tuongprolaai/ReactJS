@@ -22,6 +22,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import SidebarLayout from "@/layouts/SidebarLayout";
 import AdminLayout from "@/layouts/AdminLayout";
 import Redux from "@/pages/Redux";
+import Example2 from "@/pages/Redux/Example2";
 
 function AppRoutes() {
     return (
@@ -59,6 +60,7 @@ function AppRoutes() {
                 <Route path="/forms" element={<Forms />}></Route>
                 <Route path="/context-api" element={<ContextAPI />}></Route>
                 <Route path="/redux" element={<Redux />}></Route>
+                <Route path="/redux/example2" element={<Example2 />}></Route>
             </Routes>
         </Router>
     );
