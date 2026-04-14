@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const httpClient = axios.create({
-    baseURL: "https://api01.f8team.dev/api",
+    baseURL: import.meta.env.VITE_BASE_API,
 });
 
 const _send = async (method, path, data, config) => {

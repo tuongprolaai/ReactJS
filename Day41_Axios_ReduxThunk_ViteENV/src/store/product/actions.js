@@ -1,8 +1,28 @@
-import { SET_LIST } from "./constants"
+import http from "@/utils/http";
+import { SET_LIST } from "./constants";
+import { GET_LIST } from "../province/constants";
+import { hideLoading, showLoading } from "../ui/actions";
 
-export const setList = (payload)=>{
-  return {
-    type: SET_LIST,
-    payload
-  }
-}
+export const getList = () => {
+    return async (dispatch) => {
+        dispatch({
+            type: GET_LIST,
+        });
+        dispatch(showLoading());
+        try {
+            const response = await http.get("/products");
+            dispatch(setList(response.data.items));
+        } catch (error) {
+            console.log(error);
+        } finally {
+            dispatch(hideLoading());
+        }
+    };
+};
+
+export const setList = (payload) => {
+    return {
+        type: SET_LIST,
+        payload,
+    };
+};

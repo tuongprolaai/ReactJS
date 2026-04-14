@@ -1,22 +1,19 @@
-import { GET_LIST } from "../province/constants";
-import { SET_LIST } from "./constants";
+import { HIDE_LOADING, SHOW_LOADING } from "./constants";
 
 const initState = {
-    list: [],
-    isLoading: true,
+    loading: false,
 };
 const reducer = (state = initState, action) => {
     switch (action.type) {
-        case GET_LIST:
+        case SHOW_LOADING:
             return {
                 ...state,
-                isLoading: true,
+                loading: true,
             };
-        case SET_LIST:
+        case HIDE_LOADING:
             return {
                 ...state,
-                list: action.payload,
-                isLoading: false,
+                loading: false,
             };
         default:
             return state;

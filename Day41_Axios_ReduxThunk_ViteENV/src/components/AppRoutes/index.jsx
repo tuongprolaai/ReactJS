@@ -23,10 +23,13 @@ import SidebarLayout from "@/layouts/SidebarLayout";
 import AdminLayout from "@/layouts/AdminLayout";
 import Redux from "@/pages/Redux";
 import Example2 from "@/pages/Redux/Example2";
+import Loading from "../Loading";
 
 function AppRoutes() {
     return (
         <Router>
+            <Loading />
+
             <Routes>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Dashboard />}></Route>

@@ -1,15 +1,23 @@
-import { combineReducers, legacy_createStore as createStore } from "redux";
+import {
+    combineReducers,
+    legacy_createStore as createStore,
+    applyMiddleware,
+} from "redux";
+import { thunk } from "redux-thunk";
+import logger from "redux-logger";
 
 // Reducers
-import productReducer from "./product/reducer"
-import provinceReducer from "./product/reducer"
+import productReducer from "./product/reducer";
+import provinceReducer from "./province/reducer";
+import uiReducer from "./ui/reducer";
 
 const rootReducer = combineReducers({
-  product: productReducer,
-  province: provinceReducer
-})
+    product: productReducer,
+    province: provinceReducer,
+    ui: uiReducer,
+});
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 window.store = store;
 
