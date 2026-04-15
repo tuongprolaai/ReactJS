@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer, {reducerPath} from "@/features/counter/counterSlice"
+import { counterSlice } from "@/features/counter";
+import { productSlice } from "@/features/product";
 
 export const store = configureStore({
-  reducer: {
-    [reducerPath]: counterReducer,
-  },
+    reducer: {
+        [counterSlice.reducerPath]: counterSlice.reducer,
+        [productSlice.reducerPath]: productSlice.reducer,
+    },
 });
+
+window.store = store;
