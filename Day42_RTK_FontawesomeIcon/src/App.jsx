@@ -1,4 +1,5 @@
 import Counter from "./pages/Counter";
+import Icon from "./pages/Icon";
 import ProductsList from "./pages/ProductsList";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
         <>
             <Counter />
             <ProductsList />
+            <Icon />
         </>
     );
 }
