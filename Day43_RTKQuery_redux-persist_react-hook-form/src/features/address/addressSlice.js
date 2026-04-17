@@ -1,8 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import baseQuery from "@/utils/baseQuery";
 
 export const addressApi = createApi({
     reducerPath: "addressApi",
-    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_API }),
+    baseQuery,
     endpoints: (builder) => ({
         getProvinces: builder.query({
             query: () => "/address/provinces",

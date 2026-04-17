@@ -5,13 +5,14 @@ import {
 } from "@/features/counter/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import avatar from "@/assets/images/avatar.png";
+// import avatar from "@/assets/images/avatar.png";
 function Counter() {
     const count = useSelector(selectCount);
     const dispatch = useDispatch();
+    // test();
     return (
         <div>
-            <img src={avatar} alt="" />
+            {/* <img src={avatar} alt="" /> */}
             <div>
                 <button onClick={() => dispatch(increment())}>Increment</button>
                 <span>{count}</span>
